@@ -1,16 +1,58 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <title>Map Letters in a String</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    input, button {
+      margin: 10px 0;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <h2>Map Letters in a String</h2>
 
+  <label for="inputWord">Enter a word:</label><br>
+  <input type="text" id="inputWord" placeholder="e.g. dodo" />
+  <button onclick="handleMapLetters()">Map Letters</button>
+
+  <h3>Result:</h3>
+  <pre id="output"></pre>
+
+  <script>
+    function mapLetters(str) {
+      const result = {};
+      for (let i = 0; i < str.length; i++) {
+        const letter = str[i];
+        if (!result[letter]) {
+          result[letter] = [];
+        }
+        result[letter].push(i);
+      }
+      return result;
+    }
+
+    function handleMapLetters() {
+      const input = document.getElementById("inputWord").value.toLowerCase().trim();
+      if (input === "") {
+        document.getElementById("output").textContent = "Please enter a word.";
+        return;
+      }
+      const output = mapLetters(input);
+      document.getElementById("output").textContent = JSON.stringify(output, null, 2);
+    }
+  </script>
 </body>
-
 </html>
